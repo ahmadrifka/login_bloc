@@ -4,6 +4,7 @@ import 'package:bloc_login/bloc/delegate_bloc/simple_bloc_delegate.dart';
 import 'package:bloc_login/data/repository/user_repository.dart';
 import 'package:bloc_login/presentation/home_screen.dart';
 import 'package:bloc_login/presentation/login/login_screen.dart';
+import 'package:bloc_login/presentation/register/register_screen.dart';
 import 'package:bloc_login/presentation/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,6 +39,7 @@ class App extends StatelessWidget {
             return Splashscreen();
           }
           if (state is Unauthenticated) {
+            // return RegisterScreen(userRepository: _userRepository);
             return LoginScreen(userRepository: _userRepository);
           }
           if (state is Aunthenticated) {

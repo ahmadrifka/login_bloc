@@ -15,6 +15,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState>{
   @override
   Stream<AuthenticationState> mapEventToState(AuthenticationEvent event)  async*{
     if (event is AppStarted){
+      print('auth_bloc');
       yield* _mapAppStartedToState();
     }else if( event is LoggedIn){
       yield* _mapLoggedInToState();
@@ -26,10 +27,12 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState>{
   Stream<AuthenticationState> _mapAppStartedToState() async* {
     try {
       final isSignedIn = await _userRepository.isSignedIn();
+      print(isSignedIn);
       if(isSignedIn){
         final name = await _userRepository.getUser();
         yield Aunthenticated(name);
       }else{
+        print('auth_bloc un');
        yield Unauthenticated();
       }
     } catch (e) {
