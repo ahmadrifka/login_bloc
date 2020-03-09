@@ -1,10 +1,9 @@
+import 'package:bloc_login/bloc/login/login.dart';
 import 'package:bloc_login/data/repository/user_repository.dart';
 import 'package:bloc_login/validator/validator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:meta/meta.dart';
-
-import 'bloc_login.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   UserRepository _userRepository;
