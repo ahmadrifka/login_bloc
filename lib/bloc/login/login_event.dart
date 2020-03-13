@@ -7,6 +7,7 @@ abstract class LoginEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
 // notifies the bloc that the user has changed the email
 class EmailChanged extends LoginEvent {
   final String email;

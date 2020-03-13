@@ -1,16 +1,11 @@
+import 'package:bloc_login/bloc/authentication_bloc/authentication_bloc.dart';
+import 'package:bloc_login/bloc/authentication_bloc/authentication_event.dart';
 import 'package:bloc_login/bloc/register/register.dart';
-import 'package:bloc_login/bloc/register/register_bloc.dart';
-import 'package:bloc_login/bloc/register/register_state.dart';
 import 'package:bloc_login/presentation/register/register_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../bloc/authentication_bloc/authentication_bloc.dart';
-import '../../bloc/authentication_bloc/authentication_event.dart';
-
 class RegisterForm extends StatefulWidget {
-  @override
-  _RegisterFormState createState() => _RegisterFormState();
+  State<RegisterForm> createState() => _RegisterFormState();
 }
 
 class _RegisterFormState extends State<RegisterForm> {
@@ -19,31 +14,11 @@ class _RegisterFormState extends State<RegisterForm> {
 
   RegisterBloc _registerBloc;
 
-  bool get isPopulated => _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
+  bool get isPopulated =>
+      _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
 
-  bool isRegisterButtonEnabled (RegisterState state){
+  bool isRegisterButtonEnabled(RegisterState state) {
     return state.isFormValid && isPopulated && !state.isSubmitting;
-  }
-
-  void _onEmailChanged() {
-    _registerBloc.add(
-      EmailChanged(email: _emailController.text),
-    );
-  }
-
-  void _onPasswordChanged(){
-    _registerBloc.add(
-      PasswordChanged(password: _passwordController.text)
-    );
-  }
-
-  void _onFormSubmitted() {
-    _registerBloc.add(
-      Submitted(
-        email: _emailController.text,
-        password: _passwordController.text,
-      ),
-    );
   }
 
   @override
@@ -52,13 +27,6 @@ class _RegisterFormState extends State<RegisterForm> {
     _registerBloc = BlocProvider.of<RegisterBloc>(context);
     _emailController.addListener(_onEmailChanged);
     _passwordController.addListener(_onPasswordChanged);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
   }
 
   @override
@@ -147,6 +115,32 @@ class _RegisterFormState extends State<RegisterForm> {
       ),
     );
   }
-}
 
- 
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _onEmailChanged() {
+    _registerBloc.add(
+      EmailChanged(email: _emailController.text),
+    );
+  }
+
+  void _onPasswordChanged() {
+    _registerBloc.add(
+      PasswordChanged(password: _passwordController.text),
+    );
+  }
+
+  void _onFormSubmitted() {
+    _registerBloc.add(
+      Submitted(
+        email: _emailController.text,
+        password: _passwordController.text,
+      ),
+    );
+  }
+}

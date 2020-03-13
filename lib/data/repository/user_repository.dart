@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class UserRepository{
@@ -44,6 +45,28 @@ class UserRepository{
 
   Future<String> getUser() async {
     return (await _firebaseAuth.currentUser()).email;
+  }
+
+  Future<String> authenticated({@required String username, @required String password}) async {
+    await Future.delayed(Duration(seconds: 1));
+    return 'token';
+  }
+
+  Future<void> deleteToken() async {
+    await Future.delayed(Duration(seconds: 1));
+    return;
+  }
+
+  Future<void> persistToken(String token) async {
+    /// write to keystore/keychain
+    await Future.delayed(Duration(seconds: 1));
+    return;
+  }
+
+  Future<bool> hasToken() async {
+    /// read from keystore/keychain
+    await Future.delayed(Duration(seconds: 1));
+    return false;
   }
 
 }

@@ -1,7 +1,17 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
+abstract class LoginStates extends Equatable{
+  const LoginStates();
+
+  @override
+  List<Object> get props => [];
+}
+
+
 @immutable
-class LoginState{
+class LoginState extends LoginStates{
+
   final bool isEmailValid;
   final bool isPasswordValid;
   final bool isSubmitting;
@@ -11,6 +21,7 @@ class LoginState{
   bool get isFormValid => isEmailValid && isPasswordValid;
 
   LoginState({@required this.isEmailValid,@required this.isPasswordValid,@required this.isSubmitting,@required this.isSuccess,@required this.isFailure});
+
 
   // is the initial state of the LoginForm.
   factory LoginState.empty(){
@@ -88,3 +99,4 @@ class LoginState{
     }''';
   }
 }
+

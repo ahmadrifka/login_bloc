@@ -8,7 +8,6 @@ abstract class AuthenticationState extends Equatable {
 }
 // if the authentication state was uninitialized, the user might be seeing a splash screen
 class Unintialized extends AuthenticationState {}
-
 // if the authentication state was authenticated, the user might see a home screen.
 class Aunthenticated extends AuthenticationState {
   final String displayName;
